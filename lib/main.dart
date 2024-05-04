@@ -5,11 +5,11 @@ ColorScheme tomatoColorScheme = ColorScheme.fromSeed(seedColor: Colors.red);
 ColorScheme backgroundColorScheme = ColorScheme.fromSeed(seedColor: Colors.white);
 
 void main() {
-  runApp(const MyApp());
+  runApp(const PomodoroApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class PomodoroApp extends StatelessWidget {
+  const PomodoroApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,14 @@ class MyApp extends StatelessWidget {
         colorScheme: tomatoColorScheme,
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+// 'HomePage' is not a key words
+class HomePage extends StatelessWidget { 
+  const HomePage({super.key});
   
   @override
   Widget build(BuildContext context) {
