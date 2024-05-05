@@ -51,12 +51,16 @@ class ClockBlock extends StatefulWidget {
 
 class _ClockBlockState extends State<ClockBlock> {
   late Timer _timer;
-  int _minutes = 25;
+  List<int> _minutesArray = [25, 5];
+  late int _minutes;
+  late int _arrayIndex;
   int _seconds = 0;
   
   @override
   void initState() {
     super.initState();
+    _minutes = _minutesArray[0];
+    _arrayIndex = 0;
     _startTimer();
   }
   @override
@@ -75,12 +79,13 @@ class _ClockBlockState extends State<ClockBlock> {
             _minutes--;
             _seconds =59;
           } else {
-            _timer.cancel();
+            _minutes = _minutesArray[(++_arrayIndex) % 2];
           }
         }
       });
      });
   }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -94,6 +99,9 @@ class _ClockBlockState extends State<ClockBlock> {
   }
 }
 
+/**
+ * Class for build the singol clock block struct
+ */
 class ClockWidget extends StatelessWidget {
   final int value;
   const ClockWidget({Key? key,required this.value});
