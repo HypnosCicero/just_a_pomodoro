@@ -61,7 +61,7 @@ class _ClockBlockState extends State<ClockBlock> {
     super.initState();
     _minutes = _minutesArray[0];
     _arrayIndex = 0;
-    _startTimer();
+    //_startTimer();
   }
   @override
   void dispose() {
@@ -94,6 +94,13 @@ class _ClockBlockState extends State<ClockBlock> {
         ClockWidget(value: _minutes),
         SizedBox(width: 10),
         ClockWidget(value: _seconds),
+        ElevatedButton(
+          onPressed: () {
+            _startTimer();
+            }, 
+          child: Text("开始")
+          ),
+
       ],
     );
   }
