@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
           child: Text("just a pomodoro")
           ),
       ),
-      body: Center(child: ClockBlock(),),
+      body: ClockBlock(),
       backgroundColor: backgroundColorScheme.background,
     );
   }
@@ -61,7 +61,6 @@ class _ClockBlockState extends State<ClockBlock> {
     super.initState();
     _minutes = _minutesArray[0];
     _arrayIndex = 0;
-    //_startTimer();
   }
   @override
   void dispose() {
@@ -88,19 +87,26 @@ class _ClockBlockState extends State<ClockBlock> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: [
-        ClockWidget(value: _minutes),
-        SizedBox(width: 10),
-        ClockWidget(value: _seconds),
-        ElevatedButton(
-          onPressed: () {
-            _startTimer();
-            }, 
-          child: Text("开始")
+        Center(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClockWidget(value: _minutes),
+              SizedBox(width: 10),
+              ClockWidget(value: _seconds)
+            ]
           ),
-
+        ),
+        Center(
+          child: ElevatedButton (
+            onPressed: () {
+              _startTimer();
+              }, 
+            child: Text("开始")
+          ),
+        ), 
       ],
     );
   }
