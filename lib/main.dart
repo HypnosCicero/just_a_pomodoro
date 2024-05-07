@@ -78,7 +78,8 @@ class _ClockBlockState extends State<ClockBlock> {
             _minutes--;
             _seconds =59;
           } else {
-            _minutes = _minutesArray[(++_arrayIndex) % 2];
+            _arrayIndex++;
+            _minutes = _minutesArray[_arrayIndex %= 2];
           }
         }
       });
