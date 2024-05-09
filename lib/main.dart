@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
           child: Text("just a pomodoro")
           ),
       ),
-      body: ClockBlock(),
+      body:  ClockBlock(), 
       backgroundColor: backgroundColorScheme.background,
     );
   }
@@ -52,7 +52,7 @@ class ClockBlock extends StatefulWidget {
 
 class _ClockBlockState extends State<ClockBlock> {
   late Timer _timer;
-  List<int> _minutesArray = [5, 5];
+  List<int> _minutesArray = [25, 5];
   late int _minutes;
   late int _arrayIndex;
   int _seconds = 0;
@@ -90,6 +90,7 @@ class _ClockBlockState extends State<ClockBlock> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
           padding: EdgeInsets.only(top: 10),
