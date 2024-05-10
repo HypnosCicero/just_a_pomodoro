@@ -92,18 +92,13 @@ class _ClockBlockState extends State<ClockBlock> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: Center(
-            child: Row (
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ClockWidget(value: _minutes),
-                SizedBox(width: 10),
-                ClockWidget(value: _seconds)
-              ]
-            ),
-          ),
+        Row (
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClockWidget(value: _minutes),
+            SizedBox(width: 10),
+            ClockWidget(value: _seconds)
+          ]
         ),
         Center(
           child: ElevatedButton (
