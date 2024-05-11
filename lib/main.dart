@@ -56,6 +56,7 @@ class _ClockBlockState extends State<ClockBlock> {
   late int _minutes;
   late int _arrayIndex;
   int _seconds = 0;
+  List<bool> _isSelected = [false,false];
   
   @override
   void initState() {
@@ -101,12 +102,23 @@ class _ClockBlockState extends State<ClockBlock> {
           ]
         ),
         Center(
-          child: ElevatedButton (
-            onPressed: () {
-              _startTimer();
-              }, 
-            child: Text("开始")
-          ),
+          child: ToggleButtons(
+            isSelected: _isSelected,
+            onPressed: (int index) {
+              setState(() {
+                _isSelected[index] = !_isSelected[index];
+                if(_isSelected[index]) {
+                  _startTimer();
+                } else {
+                  _timer.cancel();
+                }
+              });
+            },
+            children: [
+              Icon(Icons.play_arrow), // 播放图标
+              Icon(Icons.pause), 
+              ],
+            ),
         ), 
       ],
     );
