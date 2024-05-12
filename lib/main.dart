@@ -107,22 +107,22 @@ class _ClockBlockState extends State<ClockBlock> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ClockWidget(value: _minutes),
-            SizedBox(width: 10),
+            SizedBox(width: 15),
+            //The area in the middle of the Clock widget 
+            //the size can control by code
             ClockWidget(value: _seconds)
           ]
         ),
-        Center(
-          child: GestureDetector(
+          GestureDetector(
             onTap: _togglePlayPause,
             child: AnimatedSwitcher(
               duration: Duration(milliseconds: 300),
               transitionBuilder: (Widget child, Animation<double> animation) {
                 return ScaleTransition(scale: animation, child: child);
               },
-              child: _isSelected? Icon(Icons.pause) : Icon(Icons.play_arrow),
+              child: _isSelected? Icon(size:36, Icons.pause) : Icon(size:36, Icons.play_arrow),
             ),
           )
-        ), 
       ],
     );
   }
@@ -138,14 +138,14 @@ class ClockWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: BorderRadius.circular(8)
       ), 
       child: Text(
         value.toString().padLeft(2, '0'),
-        style: TextStyle(fontSize: 24),
+        style: TextStyle(fontSize:36),
       )
     );
   }
