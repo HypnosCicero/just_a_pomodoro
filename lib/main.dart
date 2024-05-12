@@ -56,7 +56,7 @@ class _ClockBlockState extends State<ClockBlock> {
   late int _minutes;
   late int _arrayIndex;
   int _seconds = 0;
-  List<bool> _isSelected = [false,false];
+  bool _isSelected = false;
   
   @override
   void initState() {
@@ -87,6 +87,16 @@ class _ClockBlockState extends State<ClockBlock> {
       });
      });
   }
+  void _togglePlayPause() {
+    setState(() {
+      if(_isSelected) {
+        _timer.cancel();
+      } else {
+        _startTimer();
+      }
+      _isSelected = !_isSelected;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,23 +112,16 @@ class _ClockBlockState extends State<ClockBlock> {
           ]
         ),
         Center(
-          child: ToggleButtons(
-            isSelected: _isSelected,
-            onPressed: (int index) {
-              setState(() {
-                _isSelected[index] = !_isSelected[index];
-                if(_isSelected[index]) {
-                  _startTimer();
-                } else {
-                  _timer.cancel();
-                }
-              });
-            },
-            children: [
-              Icon(Icons.play_arrow), // 播放图标
-              Icon(Icons.pause), 
-              ],
+          child: GestureDetector(
+            onTap: _togglePlayPause,
+            child: AnimatedSwitcher(
+              duration: Duration(milliseconds: 300),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return ScaleTransition(scale: animation, child: child);
+              },
+              child: _isSelected? Icon(Icons.pause) : Icon(Icons.play_arrow),
             ),
+          )
         ), 
       ],
     );
