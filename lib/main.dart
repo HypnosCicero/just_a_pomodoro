@@ -97,6 +97,14 @@ class _ClockBlockState extends State<ClockBlock> {
       _isSelected = !_isSelected;
     });
   }
+  void _initTimes() {
+    setState(() {
+      _timer.cancel();
+      _minutes = 25;
+      _seconds = 0;
+      _arrayIndex = 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,16 +121,27 @@ class _ClockBlockState extends State<ClockBlock> {
             ClockWidget(value: _seconds)
           ]
         ),
-          GestureDetector(
-            onTap: _togglePlayPause,
-            child: AnimatedSwitcher(
-              duration: Duration(milliseconds: 300),
-              transitionBuilder: (Widget child, Animation<double> animation) {
-                return ScaleTransition(scale: animation, child: child);
-              },
-              child: _isSelected? Icon(size:36, Icons.pause) : Icon(size:36, Icons.play_arrow),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: _togglePlayPause,
+              child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 300),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return ScaleTransition(scale: animation, child: child);
+                },
+                child: _isSelected? Icon(size:36, Icons.pause) : Icon(size:36, Icons.play_arrow),
+              ),
             ),
-          )
+            ElevatedButton(
+              onPressed: () {
+                _initTimes();
+              }, 
+              child: Icon(size: 36,Icons.replay_rounded),),
+          ],
+        ),
+          
       ],
     );
   }
