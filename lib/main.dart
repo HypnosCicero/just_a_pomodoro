@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:ffi';
+//import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 ColorScheme tomatoColorScheme = ColorScheme.fromSeed(seedColor: Colors.red);
@@ -116,12 +116,9 @@ class _ClockBlockState extends State<ClockBlock> {
         Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // ClockWidget(value: _minutes),
-            // SizedBox(width: 15),
-            // ClockWidget(value: _seconds),
             TimeBlock(minutes: _minutes ,seconds: _seconds),
             Padding(
-              padding: EdgeInsets.only(left: 130),
+              padding: EdgeInsets.only(left: 0),
               child: ElevatedButton(
               onPressed: () {
                 _initTimes();
@@ -187,6 +184,7 @@ class TimeBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ClockWidget(value: minutes),
         SizedBox(width: 15),
