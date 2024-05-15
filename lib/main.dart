@@ -116,13 +116,25 @@ class _ClockBlockState extends State<ClockBlock> {
         Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ClockWidget(value: _minutes),
-            SizedBox(width: 15),
-            //The area in the middle of the Clock widget 
-            //the size can control by code
-            ClockWidget(value: _seconds)
+            // ClockWidget(value: _minutes),
+            // SizedBox(width: 15),
+            // ClockWidget(value: _seconds),
+            TimeBlock(minutes: _minutes ,seconds: _seconds),
+            Padding(
+              padding: EdgeInsets.only(left: 130),
+              child: ElevatedButton(
+              onPressed: () {
+                _initTimes();
+              }, 
+              child: Icon(
+                size: 36,
+                Icons.replay_rounded
+                ),
+              ),
+            )
           ]
         ),
+        
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -136,16 +148,7 @@ class _ClockBlockState extends State<ClockBlock> {
                 child: _isSelected? Icon(color: Colors.green, size:36, Icons.pause) : Icon(color: Colors.red, size:36, Icons.play_arrow),
               ),
             ),
-            ElevatedButton(
-
-              onPressed: () {
-                _initTimes();
-              }, 
-              child: Icon(
-                size: 36,
-                Icons.replay_rounded
-                ),
-              ),
+            
           ],
         ),
           
@@ -177,3 +180,20 @@ class ClockWidget extends StatelessWidget {
   }
 }
 
+class TimeBlock extends StatelessWidget {
+  final int minutes;
+  final int seconds;
+  const TimeBlock({Key? key,required this.minutes,required this.seconds});
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        ClockWidget(value: minutes),
+        SizedBox(width: 15),
+        //The area in the middle of the Clock widget 
+        //the size can control by code
+        ClockWidget(value: seconds),
+      ],
+    );
+  }
+}
