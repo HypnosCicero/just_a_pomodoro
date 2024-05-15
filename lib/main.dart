@@ -33,13 +33,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold( // define main architecture
       appBar: AppBar(
-        backgroundColor: backgroundColorScheme.background,
+        backgroundColor: tomatoColorScheme.background,
         title: Center(
           child: Text("just a pomodoro")
           ),
       ),
       body:  ClockBlock(), 
-      backgroundColor: backgroundColorScheme.background,
+      backgroundColor: tomatoColorScheme.background,
     );
   }
 }
@@ -51,7 +51,8 @@ class ClockBlock extends StatefulWidget {
 }
 
 class _ClockBlockState extends State<ClockBlock> {
-  late Timer _timer;
+  // late Timer _timer;
+  Timer? _timer; // There is a hidden danger of null point anomaly
   List<int> _minutesArray = [25, 5];
   late int _minutes;
   late int _arrayIndex;
@@ -66,7 +67,7 @@ class _ClockBlockState extends State<ClockBlock> {
   }
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -90,7 +91,7 @@ class _ClockBlockState extends State<ClockBlock> {
   void _togglePlayPause() {
     setState(() {
       if(_isSelected) {
-        _timer.cancel();
+        _timer?.cancel();
       } else {
         _startTimer();
       }
@@ -99,10 +100,11 @@ class _ClockBlockState extends State<ClockBlock> {
   }
   void _initTimes() {
     setState(() {
-      _timer.cancel();
+      _timer?.cancel();
       _minutes = 25;
       _seconds = 0;
       _arrayIndex = 0;
+      _isSelected = false;
     });
   }
 
@@ -131,14 +133,19 @@ class _ClockBlockState extends State<ClockBlock> {
                 transitionBuilder: (Widget child, Animation<double> animation) {
                   return ScaleTransition(scale: animation, child: child);
                 },
-                child: _isSelected? Icon(size:36, Icons.pause) : Icon(size:36, Icons.play_arrow),
+                child: _isSelected? Icon(color: Colors.green, size:36, Icons.pause) : Icon(color: Colors.red, size:36, Icons.play_arrow),
               ),
             ),
             ElevatedButton(
+
               onPressed: () {
                 _initTimes();
               }, 
-              child: Icon(size: 36,Icons.replay_rounded),),
+              child: Icon(
+                size: 36,
+                Icons.replay_rounded
+                ),
+              ),
           ],
         ),
           
