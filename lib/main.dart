@@ -53,6 +53,7 @@ class ClockBlock extends StatefulWidget {
 class _ClockBlockState extends State<ClockBlock> {
   // late Timer _timer;
   Timer? _timer; // There is a hidden danger of null point anomaly
+  Color backgroundColor = Colors.white;
   List<int> _minutesArray = [25, 5];
   late int _minutes;
   late int _arrayIndex;
@@ -83,6 +84,11 @@ class _ClockBlockState extends State<ClockBlock> {
           } else {
             _arrayIndex++;
             _minutes = _minutesArray[_arrayIndex %= 2];
+            if(_minutes == 5) {
+              backgroundColor = Colors.green;
+            } else {
+              backgroundColor = Colors.red;
+            }
           }
         }
       });
@@ -92,8 +98,10 @@ class _ClockBlockState extends State<ClockBlock> {
     setState(() {
       if(_isSelected) {
         _timer?.cancel();
+        backgroundColor = Colors.white;
       } else {
         _startTimer();
+        backgroundColor = Colors.red;
       }
       _isSelected = !_isSelected;
     });
@@ -110,46 +118,49 @@ class _ClockBlockState extends State<ClockBlock> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row (
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TimeBlock(minutes: _minutes ,seconds: _seconds),
-            Padding(
-              padding: EdgeInsets.only(left: 0),
-              child: ElevatedButton(
-              onPressed: () {
-                _initTimes();
-              }, 
-              child: Icon(
-                size: 36,
-                Icons.replay_rounded
+    return 
+    Container(
+      color: backgroundColor, // 根据状态改变背景色
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(child: TimeBlock(minutes: _minutes ,seconds: _seconds),),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: ElevatedButton(
+                onPressed: () {
+                  _initTimes();
+                }, 
+                child: Icon(
+                  size: 36,
+                  Icons.replay_rounded
+                  ),
+                ),
+              )
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: _togglePlayPause,
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 300),
+                  transitionBuilder: (Widget child, Animation<double> animation) {
+                    return ScaleTransition(scale: animation, child: child);
+                  },
+                  child: _isSelected? Icon(color: Colors.green, size:36, Icons.pause) : Icon(color: Colors.red, size:36, Icons.play_arrow),
                 ),
               ),
-            )
-          ]
-        ),
-        
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: _togglePlayPause,
-              child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 300),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  return ScaleTransition(scale: animation, child: child);
-                },
-                child: _isSelected? Icon(color: Colors.green, size:36, Icons.pause) : Icon(color: Colors.red, size:36, Icons.play_arrow),
-              ),
-            ),
+              
+            ],
+          ),
             
-          ],
-        ),
-          
-      ],
+        ],
+      )
     );
   }
 }
