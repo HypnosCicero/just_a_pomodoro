@@ -124,13 +124,11 @@ class _ClockBlockState extends State<ClockBlock> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row (
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(child: TimeBlock(minutes: _minutes ,seconds: _seconds),),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: ElevatedButton(
+              ElevatedButton(
                 onPressed: () {
                   _initTimes();
                 }, 
@@ -139,7 +137,13 @@ class _ClockBlockState extends State<ClockBlock> {
                   Icons.replay_rounded
                   ),
                 ),
-              )
+            ],
+          ),
+          Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TimeBlock(minutes: _minutes ,seconds: _seconds),
+              
             ]
           ),
           Row(
