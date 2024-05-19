@@ -1,10 +1,8 @@
 import 'dart:async';
-//import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:just_a_pomodoro/home/home.dart';
 
 ColorScheme tomatoColorScheme = ColorScheme.fromSeed(seedColor: Colors.red);
-ColorScheme backgroundColorScheme = ColorScheme.fromSeed(seedColor: Colors.white);
 
 void main() {
   runApp(const PomodoroApp());
