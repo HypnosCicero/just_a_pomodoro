@@ -121,7 +121,7 @@ class _ClockBlockState extends State<ClockBlock> {
   Widget build(BuildContext context) {
     return 
     Container(
-      color: backgroundColor, // 根据状态改变背景色
+      color: backgroundColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -140,12 +140,14 @@ class _ClockBlockState extends State<ClockBlock> {
                 ),
             ],
           ),
+          SizedBox(height: 40),
           Row (
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TimeBlock(minutes: _minutes ,seconds: _seconds),
             ]
           ),
+          SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
