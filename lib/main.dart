@@ -113,6 +113,7 @@ class _ClockBlockState extends State<ClockBlock> {
       _seconds = 0;
       _arrayIndex = 0;
       _isSelected = false;
+      backgroundColor = Colors.white;
     });
   }
 
@@ -143,7 +144,6 @@ class _ClockBlockState extends State<ClockBlock> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TimeBlock(minutes: _minutes ,seconds: _seconds),
-              
             ]
           ),
           Row(
