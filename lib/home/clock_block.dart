@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:just_a_pomodoro/home/time_block.dart';
+import 'package:just_a_pomodoro/home/home.dart';
 
 class ClockBlock extends StatefulWidget {
   const ClockBlock({super.key});
@@ -44,9 +45,9 @@ class _ClockBlockState extends State<ClockBlock> {
             _arrayIndex++;
             _minutes = _minutesArray[_arrayIndex %= 2];
             if(_minutes == 5) {
-              backgroundColor = Colors.green;
+              backgroundColor = leavesColorScheme.primaryContainer;
             } else {
-              backgroundColor = Colors.red;
+              backgroundColor = tomatoColorScheme.primaryContainer;
             }
           }
         }
@@ -57,10 +58,10 @@ class _ClockBlockState extends State<ClockBlock> {
     setState(() {
       if(_isSelected) {
         _timer?.cancel();
-        backgroundColor = Colors.white;
+        backgroundColor = backgroundColorScheme.primaryContainer;
       } else {
         _startTimer();
-        backgroundColor = Colors.red;
+        backgroundColor = tomatoColorScheme.primaryContainer;
       }
       _isSelected = !_isSelected;
     });
