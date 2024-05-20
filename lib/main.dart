@@ -13,7 +13,7 @@ class PomodoroApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(  //the code which is define the application
-      title: 'Flutter Demo',
+      title: 'Pomodoro App',
       theme: ThemeData(
         colorScheme: tomatoColorScheme,
         useMaterial3: true,
