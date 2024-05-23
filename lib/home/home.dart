@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
           ),
       ),
       body:  ClockBlock(), 
-      backgroundColor: backgroundColorScheme.primaryContainer,
+      backgroundColor: backgroundColor,
     );
   }
 }

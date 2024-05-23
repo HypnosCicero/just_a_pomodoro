@@ -13,7 +13,6 @@ class ClockBlock extends StatefulWidget {
 class _ClockBlockState extends State<ClockBlock> {
   // late Timer _timer;
   Timer? _timer; // There is a hidden danger of null point anomaly
-  Color backgroundColor = Colors.white;
   List<int> _minutesArray = [25, 5];
   late int _minutes;
   late int _arrayIndex;
@@ -58,7 +57,7 @@ class _ClockBlockState extends State<ClockBlock> {
     setState(() {
       if(_isSelected) {
         _timer?.cancel();
-        backgroundColor = backgroundColorScheme.primaryContainer;
+        backgroundColor = backgroundColor;
       } else {
         _startTimer();
         backgroundColor = tomatoColorScheme.primaryContainer;
@@ -73,7 +72,7 @@ class _ClockBlockState extends State<ClockBlock> {
       _seconds = 0;
       _arrayIndex = 0;
       _isSelected = false;
-      backgroundColor = Colors.white;
+      backgroundColor = backgroundColor;
     });
   }
 
@@ -118,7 +117,7 @@ class _ClockBlockState extends State<ClockBlock> {
                   transitionBuilder: (Widget child, Animation<double> animation) {
                     return ScaleTransition(scale: animation, child: child);
                   },
-                  child: _isSelected? Icon(color: Colors.green, size:36, Icons.pause) : Icon(color: Colors.red, size:36, Icons.play_arrow),
+                  child: _isSelected? Icon(color: Colors.green, size:36, Icons.pause) : Icon(color: tomatoColorScheme.primary, size:36, Icons.play_arrow),
                 ),
               ),
               
