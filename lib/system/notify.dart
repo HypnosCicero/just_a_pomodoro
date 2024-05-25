@@ -10,20 +10,23 @@ void showNotification() async {
     'channel_description',
     importance: Importance.max,
     priority: Priority.high,
-    sound: RawResourceAndroidNotificationSound('your_custom_sound'),
+    //sound: RawResourceAndroidNotificationSound('your_custom_sound'),
   );
 
   var iOSPlatformChannelSpecifics = IOSNotificationDetails();
 
+  var macOSPlatformChannelSpecifics = MacOSNotificationDetails();
+  
   var platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,
+    macOS: macOSPlatformChannelSpecifics,
   );
 
   await flutterLocalNotificationsPlugin.show(
     0,
-    'Notification Title',
-    'Notification Body',
+    'Is Time to Rest',
+    'You are hard work by 25 minutes',
     platformChannelSpecifics,
     payload: 'notification_payload',
   );
