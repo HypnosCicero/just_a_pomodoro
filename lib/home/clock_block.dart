@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:just_a_pomodoro/home/time_block.dart';
 import 'package:just_a_pomodoro/res/color_scheme.dart';
+import 'package:just_a_pomodoro/system/notify.dart';
 
 class ClockBlock extends StatefulWidget {
   const ClockBlock({super.key});
@@ -18,6 +19,7 @@ class _ClockBlockState extends State<ClockBlock> {
   late int _arrayIndex;
   int _seconds = 0;
   bool _isSelected = false;
+  Notify _notify = Notify();
   
   @override
   void initState() {
@@ -64,6 +66,7 @@ class _ClockBlockState extends State<ClockBlock> {
       }
       _isSelected = !_isSelected;
     });
+    _notify.showNotification();
   }
   void _initTimes() {
     setState(() {
