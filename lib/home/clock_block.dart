@@ -19,7 +19,6 @@ class _ClockBlockState extends State<ClockBlock> {
   late int _arrayIndex;
   int _seconds = 0;
   bool _isSelected = false;
-  Notify _notify = Notify();
   
   @override
   void initState() {
@@ -66,7 +65,6 @@ class _ClockBlockState extends State<ClockBlock> {
       }
       _isSelected = !_isSelected;
     });
-    _notify.showNotification();
   }
   void _initTimes() {
     setState(() {
