@@ -1,53 +1,39 @@
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
+import 'package:flutter/material.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 class Notify {
-  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   
-  Notify() {
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    initializeNotifications();
-  }
-  Future<void> initializeNotifications() async {
-    var initializationSettings = InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-      iOS: IOSInitializationSettings(),
-    );
-    await flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-      onSelectNotification: onSelectNotification,
-    );
-  }
-
-  Future<void> onSelectNotification(String? payload) async {
-    // Handle notification selection here
-  }
-
-  void showNotification() async {
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'channel_id',
-      'channel_name',
-      'channel_description',
-      importance: Importance.max,
-      priority: Priority.high,
-      //sound: RawResourceAndroidNotificationSound('your_custom_sound'),
-    );
-
-    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-
-    var macOSPlatformChannelSpecifics = MacOSNotificationDetails();
-
-    var platformChannelSpecifics = NotificationDetails(
-      android: androidPlatformChannelSpecifics,
-      iOS: iOSPlatformChannelSpecifics,
-      macOS: macOSPlatformChannelSpecifics,
-    );
-
-    await flutterLocalNotificationsPlugin.show(
-      0,
-      'Is Time to Rest',
-      'You are hard work by 25 minutes',
-      platformChannelSpecifics,
-      payload: 'notification_payload',
+  static void initAwesomeNotifications() {
+    AwesomeNotifications().initialize(
+      // set the icon to null if you want to use the default app icon
+      'resource://drawable/res_app_icon',
+      [
+        NotificationChannel(
+            channelGroupKey: 'basic_channel_group',
+            channelKey: 'basic_channel',
+            channelName: 'Basic notifications',
+            channelDescription: 'Notification channel for basic tests',
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Colors.white)
+      ],
+      // Channel groups are only visual and are not required
+      channelGroups: [
+        NotificationChannelGroup(
+            channelGroupKey: 'basic_channel_group',
+            channelGroupName: 'Basic group')
+      ],
+      debug: true
     );
   }
+
+  Future<void> _showNotification() async {
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 10,
+        channelKey: 'basic_channel',
+        title: 'Test Notification',
+        body: 'This is the notification content',
+      ),
+    );
+  }
+
 }
