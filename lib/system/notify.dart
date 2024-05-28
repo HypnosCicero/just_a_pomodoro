@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:just_a_pomodoro/controller/notification_controller.dart';
 class Notify {
   
   static void initAwesomeNotifications() {
@@ -25,7 +26,27 @@ class Notify {
     );
   }
 
-  Future<void> _showNotification() async {
+  static void setAwesomeListener() {
+    AwesomeNotifications().setListeners(
+        onActionReceivedMethod:         NotificationController.onActionReceivedMethod,
+        onNotificationCreatedMethod:    NotificationController.onNotificationCreatedMethod,
+        onNotificationDisplayedMethod:  NotificationController.onNotificationDisplayedMethod,
+        onDismissActionReceivedMethod:  NotificationController.onDismissActionReceivedMethod
+    );
+  }
+
+  static void authorization_request() {
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        // This is just a basic example. For real apps, you must show some
+        // friendly dialog box before call the request method.
+        // This is very important to not harm the user experience
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+  }
+
+  static Future<void> _showNotification() async {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 10,
