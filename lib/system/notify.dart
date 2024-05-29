@@ -46,7 +46,7 @@ class Notify {
     });
   }
 
-  static Future<void> _showNotification(String name) async {
+  static Future<void> showNotification(String name) async {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 10,
