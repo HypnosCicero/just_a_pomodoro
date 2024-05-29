@@ -6,7 +6,7 @@ class Notify {
   static void initAwesomeNotifications() {
     AwesomeNotifications().initialize(
       // set the icon to null if you want to use the default app icon
-      'resource://drawable/res_app_icon',
+      'resource://notify/icons/pomodoro',
       [
         NotificationChannel(
             channelGroupKey: 'basic_channel_group',
@@ -20,7 +20,7 @@ class Notify {
       channelGroups: [
         NotificationChannelGroup(
             channelGroupKey: 'basic_channel_group',
-            channelGroupName: 'Basic group')
+            channelGroupName: 'Notify group')
       ],
       debug: true
     );
@@ -46,12 +46,12 @@ class Notify {
     });
   }
 
-  static Future<void> _showNotification() async {
+  static Future<void> _showNotification(String name) async {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 10,
         channelKey: 'basic_channel',
-        title: 'Test Notification',
+        title: 'Test Notification name = ' + name,
         body: 'This is the notification content',
       ),
     );
