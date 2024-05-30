@@ -64,6 +64,7 @@ class _ClockBlockState extends State<ClockBlock> {
         backgroundColor = tomatoColorScheme.primaryContainer;
       }
       _isSelected = !_isSelected;
+      Notify.showNotification("1");
     });
   }
   void _initTimes() {
