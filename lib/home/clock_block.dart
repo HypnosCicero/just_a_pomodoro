@@ -19,6 +19,7 @@ class _ClockBlockState extends State<ClockBlock> {
   late int _arrayIndex;
   int _seconds = 0;
   bool _isSelected = false;
+  Color backgroundColor = backgroundColorScheme.primary;
   
   @override
   void initState() {
@@ -58,14 +59,16 @@ class _ClockBlockState extends State<ClockBlock> {
     setState(() {
       if(_isSelected) {
         _timer?.cancel();
-        backgroundColor = backgroundColor;
+        //backgroundColor = backgroundColorScheme.primary;
       } else {
         _startTimer();
         backgroundColor = tomatoColorScheme.primaryContainer;
       }
       _isSelected = !_isSelected;
-      Notify.showNotification("1");
+      
     });
+    Notify.authorization_request();
+    Notify.showNotification("1");
   }
   void _initTimes() {
     setState(() {
@@ -74,7 +77,7 @@ class _ClockBlockState extends State<ClockBlock> {
       _seconds = 0;
       _arrayIndex = 0;
       _isSelected = false;
-      backgroundColor = backgroundColor;
+      backgroundColor = backgroundColorScheme.primary;
     });
   }
 

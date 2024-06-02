@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ColorScheme tomatoColorScheme = ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 187, 15, 2) , primary: Colors.red);
 ColorScheme leavesColorScheme = ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 157, 5) , primary: Colors.green);
-Color backgroundColor = Colors.white;
+ColorScheme backgroundColorScheme = ColorScheme.fromSeed(seedColor: Colors.white , primary: Colors.white);
 
 class Checkout {
   void printColor() {
