@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:just_a_pomodoro/home/clock_widget.dart';
+import 'package:just_a_pomodoro/view/components/clock_widget.dart';
 
 class TimeBlock extends StatelessWidget {
   final int minutes;

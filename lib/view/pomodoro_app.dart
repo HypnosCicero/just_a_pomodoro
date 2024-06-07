@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:just_a_pomodoro/home/home.dart';
+import 'package:just_a_pomodoro/view/home.dart';
 import 'package:just_a_pomodoro/res/color_scheme.dart';
 
 class PomodoroApp extends StatelessWidget {

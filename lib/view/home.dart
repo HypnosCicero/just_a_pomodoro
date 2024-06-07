@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:just_a_pomodoro/home/clock_block.dart';
+import 'package:just_a_pomodoro/view/components/clock_block.dart';
 import 'package:just_a_pomodoro/res/color_scheme.dart';
 
 // 'HomePage' is not a key words

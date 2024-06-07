@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:just_a_pomodoro/home/time_block.dart';
+import 'package:just_a_pomodoro/view/components/time_block.dart';
 import 'package:just_a_pomodoro/res/color_scheme.dart';
 
 class ClockBlock extends StatefulWidget {
