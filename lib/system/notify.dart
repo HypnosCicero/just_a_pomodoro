@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class Notify {
 
-  static Future<void> init() async {
+  static Future<void> initNotification() async {
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
@@ -29,6 +29,8 @@ class Notify {
       print("user clicks on it.");
     }
   }
+
+
 
   
 }
