@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:just_a_pomodoro/view/home.dart';
+import 'package:just_a_pomodoro/view/distribution_view.dart';
 import 'package:just_a_pomodoro/res/color_scheme.dart';
 
 class PomodoroApp extends StatelessWidget {
@@ -13,7 +13,7 @@ class PomodoroApp extends StatelessWidget {
         colorScheme: tomatoColorScheme,
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const DistributionPage(),
     );
   }
 }

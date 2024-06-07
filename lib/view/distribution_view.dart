@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:just_a_pomodoro/view/components/clock_block.dart';
 import 'package:just_a_pomodoro/res/color_scheme.dart';
 
-// 'HomePage' is not a key words
-class HomePage extends StatelessWidget { 
-  const HomePage({super.key});
+
+class DistributionPage extends StatelessWidget { 
+  const DistributionPage({super.key});
   
   @override
   Widget build(BuildContext context) {
