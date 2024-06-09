@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class Notify {
 
+  static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
   static Future<void> initNotification() async {
-    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+
 
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     
@@ -30,7 +32,22 @@ class Notify {
     }
   }
 
+ // const LinuxNotificationDetails linuxNotificationDetails = LinuxNotificationDetails(
+    // );
 
+  static Future<void> showNotification() async {
+    const LinuxNotificationDetails linuxPlatformChannelSpecifics = LinuxNotificationDetails();
 
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(linux: linuxPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Hello',
+      'This is a test notification',
+      platformChannelSpecifics,
+      payload: 'Test Payload',
+    );
+  }
   
 }

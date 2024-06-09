@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:just_a_pomodoro/system/notify.dart';
 import 'package:just_a_pomodoro/view/components/time_block.dart';
 import 'package:just_a_pomodoro/res/color_scheme.dart';
 
@@ -66,6 +67,7 @@ class _ClockBlockState extends State<ClockBlock> {
       _isSelected = !_isSelected;
       
     });
+    Notify.showNotification();
   }
   void _initTimes() {
     setState(() {
