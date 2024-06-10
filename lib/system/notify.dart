@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import 'package:just_a_pomodoro/system/notify/notify_data.dart';
 class Notify {
 
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -35,18 +37,21 @@ class Notify {
  // const LinuxNotificationDetails linuxNotificationDetails = LinuxNotificationDetails(
     // );
 
-  static Future<void> showNotification() async {
+  static Future<void> showNotification(int time) async {
     const LinuxNotificationDetails linuxPlatformChannelSpecifics = LinuxNotificationDetails();
 
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(linux: linuxPlatformChannelSpecifics);
 
+    List<NotifyData> _notify_data_list = NotifyDataFactory.createNotifyData();
+    print("time = $time");
+    NotifyData _notify_data = _notify_data_list[time % 3 - 1];
     await flutterLocalNotificationsPlugin.show(
-      0,
-      'Hello',
-      'This is a test notification',
+      _notify_data.id,
+      _notify_data.title,
+      _notify_data.body,
       platformChannelSpecifics,
-      payload: 'Test Payload',
+      payload: _notify_data.payload,
     );
   }
   

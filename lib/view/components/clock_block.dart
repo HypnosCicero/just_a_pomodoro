@@ -44,7 +44,10 @@ class _ClockBlockState extends State<ClockBlock> {
             _seconds =59;
           } else {
             _arrayIndex++;
-            _minutes = _minutesArray[_arrayIndex %= 2];
+            int _nextIndex = _arrayIndex % 2;
+            Notify.showNotification(_minutesArray[_nextIndex]);
+            _arrayIndex = _nextIndex;
+            _minutes = _minutesArray[_arrayIndex];
             if(_minutes == 5) {
               backgroundColor = leavesColorScheme.primaryContainer;
             } else {
@@ -67,7 +70,7 @@ class _ClockBlockState extends State<ClockBlock> {
       _isSelected = !_isSelected;
       
     });
-    Notify.showNotification();
+    //Notify.showNotification(0);
   }
   void _initTimes() {
     setState(() {
