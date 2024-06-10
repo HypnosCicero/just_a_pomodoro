@@ -14,7 +14,9 @@ class Notify {
     
     final LinuxInitializationSettings initializationSettingsLinux =
       LinuxInitializationSettings(
-        defaultActionName: 'Open notification');
+        defaultActionName: 'Open notification',
+        defaultIcon: AssetsLinuxIcon('res/icons/notify/pomodoro.png'),
+      );
 
     final InitializationSettings initializationSettings = InitializationSettings(
       linux: initializationSettingsLinux);
