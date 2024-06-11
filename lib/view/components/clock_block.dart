@@ -70,7 +70,6 @@ class _ClockBlockState extends State<ClockBlock> {
       _isSelected = !_isSelected;
       
     });
-    //Notify.showNotification(0);
   }
   void _initTimes() {
     setState(() {
