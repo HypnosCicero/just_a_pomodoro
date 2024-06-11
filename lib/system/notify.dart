@@ -7,10 +7,11 @@ class Notify {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
+  static List<NotifyData> _notify_data_list = NotifyDataFactory.createNotifyData();
+
   static Future<void> initNotification() async {
 
-
-    // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+    // initialization the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     
     final LinuxInitializationSettings initializationSettingsLinux =
       LinuxInitializationSettings(
@@ -36,17 +37,13 @@ class Notify {
     }
   }
 
- // const LinuxNotificationDetails linuxNotificationDetails = LinuxNotificationDetails(
-    // );
 
   static Future<void> showNotification(int time) async {
     const LinuxNotificationDetails linuxPlatformChannelSpecifics = LinuxNotificationDetails();
 
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(linux: linuxPlatformChannelSpecifics);
-
-    List<NotifyData> _notify_data_list = NotifyDataFactory.createNotifyData();
-    print("time = $time");
+    
     NotifyData _notify_data = _notify_data_list[time % 3 - 1];
     await flutterLocalNotificationsPlugin.show(
       _notify_data.id,
