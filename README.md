@@ -2,15 +2,18 @@
 
 I want to make a simple pomodoro project which can manage my attention capacity.
 
-## Getting Started
+# Getting Started
 
-This project is a starting point for a Flutter application.
+## Adaptation platform
+The current code includes all platforms, but only Linux and Windows platforms have been tested.  
 
-A few resources to get you started if this is your first Flutter project:
+And only the Linux platform has notifications.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Download the required packages
+first of all you should click the `pubspec.yaml` save this `pubspec.yaml` if you are use vscode, or you can use this in the terminal. 
+```bash
+flutter packages get
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Start the project
+Now you can run this project.
